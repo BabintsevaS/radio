@@ -145,6 +145,45 @@ public class RadioTest {
     }
 
     @Test
+    public void decreaseVolumeFromMoreMax() {
+        Radio radio = new Radio();
+
+        radio.setMaxVolume(10);
+        radio.setMinVolume(0);
+        radio.setCurrentVolume(12);
+
+        int expected = 0;
+        int actual = radio.decreaseVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseVolumeFromLessMax() {
+        Radio radio = new Radio();
+
+        radio.setMaxVolume(10);
+        radio.setMinVolume(0);
+        radio.setCurrentVolume(9);
+
+        int expected = 8;
+        int actual = radio.decreaseVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseVolumeFromLessMin() {
+        Radio radio = new Radio();
+
+        radio.setMaxVolume(10);
+        radio.setMinVolume(0);
+        radio.setCurrentVolume(-1);
+
+        int expected = 0;
+        int actual = radio.decreaseVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void getVolumeMax() {
         Radio radio = new Radio();
 
@@ -304,6 +343,45 @@ public class RadioTest {
         radio.setCurrentStation(9);
 
         int expected = 8;
+        int actual = radio.decreaseStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseStationFromMoreMax() {
+        Radio radio = new Radio();
+
+        radio.setMaxStation(9);
+        radio.setMinStation(0);
+        radio.setCurrentStation(10);
+
+        int expected = 9;
+        int actual = radio.decreaseStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseStationLessMax() {
+        Radio radio = new Radio();
+
+        radio.setMaxStation(9);
+        radio.setMinStation(0);
+        radio.setCurrentStation(8);
+
+        int expected = 7;
+        int actual = radio.decreaseStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseStationLessMin() {
+        Radio radio = new Radio();
+
+        radio.setMaxStation(9);
+        radio.setMinStation(0);
+        radio.setCurrentStation(-1);
+
+        int expected = 9;
         int actual = radio.decreaseStation();
         assertEquals(expected, actual);
     }
